@@ -19,7 +19,16 @@ ReactDOM.render(
       </div>
     </Router> */}
     <div>
-      Welcome to Electron-React App
+    <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo">Exchange App</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a >Heading 1</a></li>
+        <li><a>Heading 2</a></li>
+        <li><a >Heading 3</a></li>
+      </ul>
+    </div>
+  </nav>
     </div>
   </Provider>,
   document.getElementById('root')
