@@ -4,32 +4,17 @@ import { HashRouter as Router, Route, Switch, Redirect, Link } from 'react-route
 import { Provider } from 'react-redux';
 
 import store from './reducers';
-
-import VideoSelectScreen from './screens/VideoSelectScreen';
-import ConvertScreen from './screens/ConvertScreen';
+import MainPage from './screens/MainPage';
 
 ReactDOM.render(
   <Provider store={store}>
-    {/* <Router>
+    <Router>
       <div className="app">
         <Switch>
-          <Route path="/convert" component={ConvertScreen} />
-          <Route path="/" component={VideoSelectScreen} />
+          <Route path="/" component={MainPage} />
         </Switch>
       </div>
-    </Router> */}
-    <div>
-    <nav>
-    <div class="nav-wrapper">
-      <a href="#" class="brand-logo">Exchange App</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a >Heading 1</a></li>
-        <li><a>Heading 2</a></li>
-        <li><a >Heading 3</a></li>
-      </ul>
-    </div>
-  </nav>
-    </div>
+    </Router>
   </Provider>,
   document.getElementById('root')
 );
