@@ -4,7 +4,9 @@ const { app, BrowserWindow } = electron
 
 app.on('ready', ()=> {
   console.log("First Electron App has Started Running")
-  new BrowserWindow({})
+  const HomeWindow = new BrowserWindow({})
+  // HomeWindow.loadURL(`https://freecoursesite.com/`)
+  HomeWindow.loadURL(`file://${__dirname}/index.html`)
 })
 
 app.on('quit', ()=> {
