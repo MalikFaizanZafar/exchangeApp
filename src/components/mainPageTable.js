@@ -10,6 +10,7 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import IconButton from '@material-ui/core/IconButton';
+import Icon from '@material-ui/core/Icon';
 import FirstPageIcon from '@material-ui/icons/FirstPage';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
@@ -103,12 +104,6 @@ TablePaginationActions.propTypes = {
 const TablePaginationActionsWrapped = withStyles(actionsStyles, { withTheme: true })(
   TablePaginationActions,
 );
-
-let counter = 0;
-function createData(name, calories, fat) {
-  counter += 1;
-  return { id: counter, name, calories, fat };
-}
 
 const styles = theme => ({
   root: {
@@ -749,11 +744,12 @@ class CustomPaginationActionsTable extends React.Component {
           <Table className={classes.table}>
           <TableHead>
           <TableRow>
-            <CustomTableCell>Reg No.</CustomTableCell>
-            <CustomTableCell align="right">Name</CustomTableCell>
-            <CustomTableCell align="right">Class</CustomTableCell>
-            <CustomTableCell align="right">Age</CustomTableCell>
-            <CustomTableCell align="right">City</CustomTableCell>
+            <CustomTableCell align="left">Reg No.</CustomTableCell>
+            <CustomTableCell align="left">Name</CustomTableCell>
+            <CustomTableCell align="left">Class</CustomTableCell>
+            <CustomTableCell align="left">Age</CustomTableCell>
+            <CustomTableCell align="left">City</CustomTableCell>
+            <CustomTableCell align="left">Actions</CustomTableCell>
           </TableRow>
         </TableHead>
             <TableBody>
@@ -762,10 +758,15 @@ class CustomPaginationActionsTable extends React.Component {
                   <TableCell component="th" scope="row">
                     {row.id}
                   </TableCell>
-                  <TableCell align="right">{row.name}</TableCell>
-                  <TableCell align="right">{row.class}</TableCell>
-                  <TableCell align="right">{row.age}</TableCell>
-                  <TableCell align="right">{row.city}</TableCell>
+                  <TableCell align="left">{row.name}</TableCell>
+                  <TableCell align="left">{row.class}</TableCell>
+                  <TableCell align="left">{row.age}</TableCell>
+                  <TableCell align="left">{row.city}</TableCell>
+                  <TableCell align="left">
+                    <Icon>star</Icon>
+                    <Icon>edit_icon</Icon>
+                    <Icon>delete_icon</Icon>
+                  </TableCell>
                 </TableRow>
               ))}
               {emptyRows > 0 && (
