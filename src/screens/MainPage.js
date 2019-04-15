@@ -9,7 +9,7 @@ class MainPage extends Component {
       <div>
       <TopNavBar></TopNavBar>
       <Grid container spacing={12} justify="center">
-      <Grid item sm={8}>
+      <Grid item sm={10}>
         <MainPageTable></MainPageTable>
       </Grid>
       </Grid>
