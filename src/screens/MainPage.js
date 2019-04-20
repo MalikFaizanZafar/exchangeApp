@@ -67,14 +67,6 @@ function PermanentDrawerLeft(props) {
             {
               name: 'Add',
               icon: 'add_circle'
-            },
-            {
-              name: 'Delete',
-              icon: 'delete'
-            },
-            {
-              name: 'Edit',
-              icon: 'edit'
             }].map((action, index) => (
             <ListItem button key={index}>
               <ListItemIcon>
