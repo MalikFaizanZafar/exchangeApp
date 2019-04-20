@@ -16,8 +16,9 @@ function MoreInfoDialog(props){
         <DialogTitle id="draggable-dialog-title">More Info</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            To subscribe to this website, please enter your email address here. We will send
-            updates occasionally.
+          {props.student.name}
+          {props.student.city}
+          {/* {props.student.extraFields.map(ef => ef)} */}
           </DialogContentText>
         </DialogContent>
       </Dialog>

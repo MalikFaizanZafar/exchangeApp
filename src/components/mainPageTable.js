@@ -140,6 +140,8 @@ const styles = theme => ({
 class CustomPaginationActionsTable extends React.Component {
   state = {
     rows: tableData,
+    selectedStudent: {},
+    selectedClass: {},
     page: 0,
     rowsPerPage: 5,
     moreInfoOpen: false
@@ -153,11 +155,25 @@ class CustomPaginationActionsTable extends React.Component {
     this.setState({ page: 0, rowsPerPage: event.target.value });
   };
 
-  handleClickOpen = () => {
-    this.setState({ moreInfoOpen: true });
-    console.log('this.state : ', this.state)
+  handleClickOpen = id => {
+    const selectedStd = this.state.rows.filter(std => std.id === id);
+    console.log("selectedStd : ", selectedStd[0]);
+    this.setState(
+      {
+        selectedStudent: selectedStd[0],
+        moreInfoOpen: true
+      },
+      () => console.log("this.state.selectedStudent : ", this.state.selectedStudent)
+    );
   };
-
+  viewSelectedClass = (cls) => {
+    const selectedCls = this.state.rows.filter(std => std.class === cls)
+    this.setState({
+      selectedClass: selectedCls
+    },()=> {
+      console.log("this.state.selectedClass : ", this.state.selectedClass)
+    })
+  }
   handleClose = () => {
     this.setState({ moreInfoOpen: false });
   };
@@ -170,7 +186,11 @@ class CustomPaginationActionsTable extends React.Component {
 
     return (
       <Paper className={classes.root}>
-      <MoreInfoDialog visible={this.state.moreInfoOpen} handleClose={this.handleClose}></MoreInfoDialog>
+        <MoreInfoDialog
+          visible={this.state.moreInfoOpen}
+          handleClose={this.handleClose}
+          student={this.state.selectedStudent}
+        />
         <div className={classes.tableWrapper}>
           <Table className={classes.table}>
             <TableHead>
@@ -201,7 +221,7 @@ class CustomPaginationActionsTable extends React.Component {
                         color="primary"
                         size="small"
                         className={classes.button}
-                        onClick={this.handleClickOpen}
+                        onClick={() => this.handleClickOpen(row.id)}
                       >
                         More Info
                       </Button>
@@ -211,6 +231,7 @@ class CustomPaginationActionsTable extends React.Component {
                         color="primary"
                         size="small"
                         className={classes.button}
+                        onClick={() => this.viewSelectedClass(row.class)}
                       >
                         Department
                       </Button>
