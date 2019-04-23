@@ -1,8 +1,9 @@
 import React from 'react';
 import MainPageTable from '../components/mainPageTable';
+import { withRouter } from 'react-router-dom';
 
 
-export default class MainPage extends React.Component {
+class MainPageClass extends React.Component {
   render(){
     return (
       <div>
@@ -11,3 +12,5 @@ export default class MainPage extends React.Component {
     );
   }
 }
+const MainPage = withRouter(MainPageClass)
+export default MainPage;

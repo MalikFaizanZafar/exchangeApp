@@ -1,12 +1,8 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import DepartmentPageTable from "../components/departmentPageTable";
+import { withRouter } from 'react-router-dom';
 
-export default class DepartmentPage extends Component {
-  static contextTypes = {
-    router: PropTypes.object,
-    location: PropTypes.object
-  };
+ class DepartmentPageClass extends Component {
   render() {
     return (
       <div>
@@ -15,3 +11,5 @@ export default class DepartmentPage extends Component {
     );
   }
 }
+const DepartmentPage = withRouter(DepartmentPageClass)
+export default DepartmentPage;
