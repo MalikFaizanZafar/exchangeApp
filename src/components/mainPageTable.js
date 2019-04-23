@@ -17,7 +17,7 @@ import TablePaginationWrapper from "./TablePaginationWrapper";
 const styles = theme => ({
   root: {
     width: "100%",
-    marginTop: theme.spacing.unit * 3
+    // marginTop: theme.spacing.unit * 1
   },
   table: {
     minWidth: 500
@@ -43,7 +43,7 @@ class CustomPaginationActionsTable extends React.Component {
     selectedStudent: {},
     selectedClass: {},
     page: 0,
-    rowsPerPage: 5,
+    rowsPerPage: 10,
     moreInfoOpen: false
   };
 
@@ -146,7 +146,7 @@ class CustomPaginationActionsTable extends React.Component {
             <TableFooter>
               <TableRow>
                 <TablePagination
-                  rowsPerPageOptions={[5, 10, 25]}
+                  rowsPerPageOptions={[10, 25]}
                   colSpan={3}
                   count={rows.length}
                   rowsPerPage={rowsPerPage}
