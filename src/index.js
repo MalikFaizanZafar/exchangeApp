@@ -7,6 +7,7 @@ import store from './reducers';
 import MainPage from './screens/MainPage';
 import AppTopBar from './components/AppTopBar';
 import AppBottomBar from './components/AppBottomBar';
+import DepartmentPage from './screens/DepartmentPage';
 
 ReactDOM.render(
   <Provider store={store}>
@@ -15,6 +16,7 @@ ReactDOM.render(
         <AppTopBar />
         <Switch>
           <Route path="/" component={MainPage} />
+          <Router path="/department" component={DepartmentPage} />
         </Switch>
        <AppBottomBar />
       </div>
