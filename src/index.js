@@ -15,8 +15,8 @@ ReactDOM.render(
       <div className="app">
         <AppTopBar />
         <Switch>
-          <Route path="/" component={MainPage} />
-          <Router path="/department" component={DepartmentPage} />
+          <Route exact={true} path="/" component={MainPage} />
+          <Route exact={true} path="/department" component={DepartmentPage} />
         </Switch>
        <AppBottomBar />
       </div>
