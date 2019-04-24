@@ -16,20 +16,27 @@ class DenseAppBar extends React.Component {
       <div>
         <AppBar position="static">
           <Toolbar variant="dense">
-            <IconButton color="inherit" aria-label="Menu" style={{ marginLeft: -30}}>
-              {this.state.backArrow ? (
-                <Icon
-                  fontSize="large"
-                  onClick={() => {
-                    this.props.history.push(`/`);
-                  }}
-                >
-                  keyboard_backspace
-                </Icon>
-              ) : (
+            {this.state.backArrow ? (
+              <IconButton
+                color="inherit"
+                aria-label="Menu"
+                style={{ marginLeft: -30 }}
+                onClick={() => {
+                  this.props.history.push(`/`);
+                }}
+              >
+                {" "}
+                <Icon fontSize="large">keyboard_backspace</Icon>
+              </IconButton>
+            ) : (
+              <IconButton
+                color="inherit"
+                aria-label="Menu"
+                style={{ marginLeft: -30 }}
+              >
                 <Icon fontSize="large">menu</Icon>
-              )}
-            </IconButton>
+              </IconButton>
+            )}
             <Typography variant="h6" color="inherit">
               Exchange App
             </Typography>
