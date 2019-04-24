@@ -43,7 +43,7 @@ class CustomPaginationActionsTable extends React.Component {
   state = {
     rows: tableData,
     selectedStudent: {},
-    selectedClass: {},
+    selectedClass: [],
     page: 0,
     rowsPerPage: 10,
     moreInfoOpen: false
@@ -69,14 +69,7 @@ class CustomPaginationActionsTable extends React.Component {
     );
   };
   viewSelectedClass = cls => {
-    console.log("selected class is : ", cls);
-    this.props.history.push(`/department`);
-    // const selectedCls = this.state.rows.filter(std => std.class === cls)
-    // this.setState({
-    //   selectedClass: selectedCls
-    // },()=> {
-    //   console.log("this.state.selectedClass : ", this.state.selectedClass)
-    // })
+    this.props.history.push(`/department?name=${cls}`);
   };
   handleClose = () => {
     this.setState({ moreInfoOpen: false });

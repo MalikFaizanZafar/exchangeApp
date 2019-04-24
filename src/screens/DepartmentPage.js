@@ -38,21 +38,20 @@ const CustomTableCell = withStyles(theme => ({
 
 class CustomPaginationActionsTable extends React.Component {
   state = {
-    rows: tableData,
-    selectedStudent: selectedStudent(0),
-    selectedClass: selectedClass(3),
-    page: 0,
-    rowsPerPage: 10,
+    students: [],
+    selectedStudent: {},
     moreInfoOpen: false
   };
-
-  handleChangePage = (event, page) => {
-    this.setState({ page });
-  };
-
-  handleChangeRowsPerPage = event => {
-    this.setState({ page: 0, rowsPerPage: event.target.value });
-  };
+  componentDidMount() {
+    const params = this.props.location.search;
+    let splittedParams = params.split("=");
+    let className = splittedParams[1];
+    selectedClass(className)
+      .then(sltdClass => {
+        this.setState({ students: sltdClass });
+      })
+      .catch(error => console.log("No Class found due to Error : ", error));
+  }
 
   handleClickOpen = id => {
     this.setState(
@@ -64,25 +63,12 @@ class CustomPaginationActionsTable extends React.Component {
         console.log("this.state.selectedStudent : ", this.state.selectedStudent)
     );
   };
-  viewSelectedClass = cls => {
-    this.setState(
-      {
-        selectedClass: selectedClass(cls)
-      },
-      () => {
-        console.log("this.state.selectedClass : ", this.state.selectedClass);
-      }
-    );
-  };
   handleClose = () => {
     this.setState({ moreInfoOpen: false });
   };
 
   render() {
     const { classes } = this.props;
-    const { rows, rowsPerPage, page } = this.state;
-    const emptyRows =
-      rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
     return (
       <Paper className={classes.root}>
@@ -105,35 +91,28 @@ class CustomPaginationActionsTable extends React.Component {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map(row => (
-                  <TableRow key={row.id}>
-                    <TableCell component="th" scope="row">
-                      {row.id}
-                    </TableCell>
-                    <TableCell align="left">{row.name}</TableCell>
-                    <TableCell align="left">{row.class}</TableCell>
-                    <TableCell align="left">{row.age}</TableCell>
-                    <TableCell align="left">{row.city}</TableCell>
-                    <TableCell align="left">
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        size="small"
-                        className={classes.button}
-                        onClick={() => this.handleClickOpen(row.id)}
-                      >
-                        More Info
-                      </Button>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              {emptyRows > 0 && (
-                <TableRow style={{ height: 48 * emptyRows }}>
-                  <TableCell colSpan={6} />
+              {this.state.students.map(row => (
+                <TableRow key={row.id}>
+                  <TableCell component="th" scope="row">
+                    {row.id}
+                  </TableCell>
+                  <TableCell align="left">{row.name}</TableCell>
+                  <TableCell align="left">{row.class}</TableCell>
+                  <TableCell align="left">{row.age}</TableCell>
+                  <TableCell align="left">{row.city}</TableCell>
+                  <TableCell align="left">
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      size="small"
+                      className={classes.button}
+                      onClick={() => this.handleClickOpen(row.id)}
+                    >
+                      More Info
+                    </Button>
+                  </TableCell>
                 </TableRow>
-              )}
+              ))}
             </TableBody>
           </Table>
         </div>

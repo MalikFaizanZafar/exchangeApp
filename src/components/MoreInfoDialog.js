@@ -1,11 +1,10 @@
-import React from 'react';
-import Dialog from '@material-ui/core/Dialog';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
+import React from "react";
+import Dialog from "@material-ui/core/Dialog";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
 
-
-function MoreInfoDialog(props){
+function MoreInfoDialog(props) {
   return (
     <div>
       <Dialog
@@ -16,9 +15,9 @@ function MoreInfoDialog(props){
         <DialogTitle id="draggable-dialog-title">More Info</DialogTitle>
         <DialogContent>
           <DialogContentText>
-          {/* {props.student.name}
+            {/* {props.student.name}
           {props.student.city} */}
-          {/* {props.student.extraFields.map(ef => ef)} */}
+            {/* {props.student.extraFields.map(ef => ef)} */}
           </DialogContentText>
         </DialogContent>
       </Dialog>
