@@ -10,11 +10,12 @@ import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import tableData from "../store/data";
 import MoreInfoDialog from "./../components/MoreInfoDialog";
-import { withRouter } from 'react-router-dom';
+import { withRouter } from "react-router-dom";
+import AppTopBar from "../components/AppTopBar";
 
 const styles = theme => ({
   root: {
-    width: "100%",
+    width: "100%"
     // marginTop: theme.spacing.unit * 1
   },
   table: {
@@ -33,7 +34,7 @@ const CustomTableCell = withStyles(theme => ({
   body: {
     fontSize: 14
   }
-}))(TableCell); 
+}))(TableCell);
 
 class CustomPaginationActionsTable extends React.Component {
   state = {
@@ -60,17 +61,21 @@ class CustomPaginationActionsTable extends React.Component {
         selectedStudent: selectedStd[0],
         moreInfoOpen: true
       },
-      () => console.log("this.state.selectedStudent : ", this.state.selectedStudent)
+      () =>
+        console.log("this.state.selectedStudent : ", this.state.selectedStudent)
     );
   };
-  viewSelectedClass = (cls) => {
-    const selectedCls = this.state.rows.filter(std => std.class === cls)
-    this.setState({
-      selectedClass: selectedCls
-    },()=> {
-      console.log("this.state.selectedClass : ", this.state.selectedClass)
-    })
-  }
+  viewSelectedClass = cls => {
+    const selectedCls = this.state.rows.filter(std => std.class === cls);
+    this.setState(
+      {
+        selectedClass: selectedCls
+      },
+      () => {
+        console.log("this.state.selectedClass : ", this.state.selectedClass);
+      }
+    );
+  };
   handleClose = () => {
     this.setState({ moreInfoOpen: false });
   };
@@ -83,6 +88,7 @@ class CustomPaginationActionsTable extends React.Component {
 
     return (
       <Paper className={classes.root}>
+        <AppTopBar backArrow={true} />
         <MoreInfoDialog
           visible={this.state.moreInfoOpen}
           handleClose={this.handleClose}
@@ -143,5 +149,5 @@ CustomPaginationActionsTable.propTypes = {
 };
 
 const DepartmentPageTable = withStyles(styles)(CustomPaginationActionsTable);
-const DepartmentPage = withRouter(DepartmentPageTable)
+const DepartmentPage = withRouter(DepartmentPageTable);
 export default DepartmentPage;
