@@ -55,10 +55,9 @@ class CustomPaginationActionsTable extends React.Component {
 
   handleClickOpen = id => {
     getSelectedStudent(id).then(sldStudent => {
-      this.setState(
-        {
-          selectedStudent:sldStudent
-        })
+      this.setState({selectedStudent:sldStudent}, () => {
+        this.setState({ moreInfoOpen: true})
+      })
     }).catch(error => console.log(error))
   };
   handleClose = () => {
