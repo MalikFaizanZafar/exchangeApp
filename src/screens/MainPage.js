@@ -81,11 +81,13 @@ class CustomPaginationActionsTable extends React.Component {
     return (
       <Paper className={classes.root}>
         <AppTopBar />
-        <MoreInfoDialog
+        {
+          this.state.moreInfoOpen? <MoreInfoDialog
           visible={this.state.moreInfoOpen}
           handleClose={this.handleClose}
-          student={this.state.selectedStudent}
-        />
+          studentId={this.state.selectedStudent.id}
+        />: ''
+        }
         <div className={classes.tableWrapper}>
           <Table className={classes.table}>
             <TableHead>
