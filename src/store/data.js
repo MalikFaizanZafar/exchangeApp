@@ -1301,3 +1301,15 @@ const tableData = [{
 }]
 
 export default tableData;
+
+export const selectedClass = (className)=> {
+  console.log('class is : ', className)
+  let selectedCls = tableData.filter(student => student.class === className)
+  console.log('selectedCls is : ', selectedCls)
+  return selectedCls
+}
+
+export const selectedStudent = (id) => {
+  let selectedStd = tableData.filter(student => student.id === id)
+  return selectedStd[0]
+}

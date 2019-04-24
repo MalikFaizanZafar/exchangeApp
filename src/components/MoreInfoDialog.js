@@ -16,8 +16,8 @@ function MoreInfoDialog(props){
         <DialogTitle id="draggable-dialog-title">More Info</DialogTitle>
         <DialogContent>
           <DialogContentText>
-          {props.student.name}
-          {props.student.city}
+          {/* {props.student.name}
+          {props.student.city} */}
           {/* {props.student.extraFields.map(ef => ef)} */}
           </DialogContentText>
         </DialogContent>

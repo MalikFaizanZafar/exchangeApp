@@ -8,7 +8,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
-import tableData from "../store/data";
+import tableData, { selectedStudent, selectedClass } from "../store/data";
 import MoreInfoDialog from "./../components/MoreInfoDialog";
 import { withRouter } from "react-router-dom";
 import AppTopBar from "../components/AppTopBar";
@@ -39,8 +39,8 @@ const CustomTableCell = withStyles(theme => ({
 class CustomPaginationActionsTable extends React.Component {
   state = {
     rows: tableData,
-    selectedStudent: {},
-    selectedClass: {},
+    selectedStudent: selectedStudent(0),
+    selectedClass: selectedClass(3),
     page: 0,
     rowsPerPage: 10,
     moreInfoOpen: false
@@ -55,10 +55,9 @@ class CustomPaginationActionsTable extends React.Component {
   };
 
   handleClickOpen = id => {
-    const selectedStd = this.state.rows.filter(std => std.id === id);
     this.setState(
       {
-        selectedStudent: selectedStd[0],
+        selectedStudent: selectedStudent(id),
         moreInfoOpen: true
       },
       () =>
@@ -66,10 +65,9 @@ class CustomPaginationActionsTable extends React.Component {
     );
   };
   viewSelectedClass = cls => {
-    const selectedCls = this.state.rows.filter(std => std.class === cls);
     this.setState(
       {
-        selectedClass: selectedCls
+        selectedClass: selectedClass(cls)
       },
       () => {
         console.log("this.state.selectedClass : ", this.state.selectedClass);
