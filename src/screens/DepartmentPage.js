@@ -60,6 +60,7 @@ class CustomPaginationActionsTable extends React.Component {
       })
     }).catch(error => console.log(error))
   };
+  
   handleClose = () => {
     this.setState({ moreInfoOpen: false });
   };
