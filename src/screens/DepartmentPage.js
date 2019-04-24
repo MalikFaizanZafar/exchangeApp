@@ -8,7 +8,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
-import tableData, { selectedStudent, selectedClass } from "../store/data";
+import { getSelectedStudent, getSelectedClass } from "../store/data";
 import MoreInfoDialog from "./../components/MoreInfoDialog";
 import { withRouter } from "react-router-dom";
 import AppTopBar from "../components/AppTopBar";
@@ -46,7 +46,7 @@ class CustomPaginationActionsTable extends React.Component {
     const params = this.props.location.search;
     let splittedParams = params.split("=");
     let className = splittedParams[1];
-    selectedClass(className)
+    getSelectedClass(className)
       .then(sltdClass => {
         this.setState({ students: sltdClass });
       })
@@ -54,14 +54,12 @@ class CustomPaginationActionsTable extends React.Component {
   }
 
   handleClickOpen = id => {
-    this.setState(
-      {
-        selectedStudent: selectedStudent(id),
-        moreInfoOpen: true
-      },
-      () =>
-        console.log("this.state.selectedStudent : ", this.state.selectedStudent)
-    );
+    getSelectedStudent(id).then(sldStudent => {
+      this.setState(
+        {
+          selectedStudent:sldStudent
+        })
+    }).catch(error => console.log(error))
   };
   handleClose = () => {
     this.setState({ moreInfoOpen: false });

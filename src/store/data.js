@@ -1403,7 +1403,7 @@ const tableData = [
 
 export default tableData;
 
-export const selectedClass = className => {
+export const getSelectedClass = className => {
   return new Promise((resolve, reject) => {
     let selectedCls = tableData.filter(student => student.class == className);
     if (selectedCls.length === 0) {
@@ -1414,7 +1414,14 @@ export const selectedClass = className => {
   });
 };
 
-export const selectedStudent = id => {
-  let selectedStd = tableData.filter(student => student.id === id);
-  return selectedStd[0];
+export const getSelectedStudent = id => {
+  return new Promise((resolve, reject)=> {
+    let selectedStd = tableData.filter(student => student.id == id);
+    if(selectedStd[0]){
+      console.log('selectedStd[0] is : ', selectedStd[0])
+      resolve(selectedStd[0])
+    }else {
+      reject(`No Student with the Id : ${id} found`)
+    }
+  })
 };
