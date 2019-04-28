@@ -1418,7 +1418,7 @@ export const getSelectedStudent = id => {
   return new Promise((resolve, reject)=> {
     let selectedStd = tableData.filter(student => student.id == id);
     if(selectedStd[0]){
-      console.log('selectedStd[0] is : ', selectedStd[0])
+      // console.log('selectedStd[0] is : ', selectedStd[0])
       resolve(selectedStd[0])
     }else {
       reject(`No Student with the Id : ${id} found`)

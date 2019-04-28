@@ -4,6 +4,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { getSelectedStudent } from "../store/data";
+import Chip from '@material-ui/core/Chip';
 
 class MoreInfoDialog extends React.Component {
   constructor(props){
@@ -15,10 +16,13 @@ class MoreInfoDialog extends React.Component {
   componentDidMount(){
     console.log('this.props.studentId : ', this.props.studentId)
     getSelectedStudent(this.props.studentId).then(sldStudent => {
-      this.setState({selectedStudent:sldStudent})
+      this.setState({selectedStudent:sldStudent}, () => {
+        console.log("this.state.selectedStudent : ", this.state.selectedStudent)
+      })
     }).catch(error => console.log(error))
   }
   render() {
+    const student = this.state.selectedStudent
     return (
       <div>
         <Dialog
@@ -29,7 +33,31 @@ class MoreInfoDialog extends React.Component {
           <DialogTitle id="draggable-dialog-title">More Info</DialogTitle>
           <DialogContent>
             <DialogContentText>
-              {/* { this.state.selectedStudent} */}
+              {/* {
+                Object.values(student.extraFields).forEach((std,i) => {
+                  <Chip
+                    key={i}
+                    label={std}
+                    clickable
+                    color="primary"
+                  />
+                })
+              } */}
+            <Chip
+              label={student.name}
+              clickable
+              color="primary"
+            />
+            <Chip
+              label={student.age}
+              clickable
+              color="primary"
+            />
+            <Chip
+              label={student.city}
+              clickable
+              color="primary"
+            />
             </DialogContentText>
           </DialogContent>
         </Dialog>
